@@ -11,7 +11,11 @@ pipeline:
             status: [ success, failure ]
         template: >
             {{#success build.status}}
-                build {{build.number}} succeeded. Good job.
+                Build {{build.number}} (commit {{build.commit}})
+                Author : {{build.author}}
+                Status : success
             {{else}}
-                build {{build.number}} failed. Fix me please.
+                Build {{build.number}} (commit {{build.commit}})
+                Author : {{build.author}}
+                Status : failed
             {{/success}}
