@@ -1,6 +1,6 @@
 pipeline:
     build:
-        image: java:openjdk8-alpine
+        image: openjdk:8
         commands:
             - mvn package
     slack:
@@ -8,6 +8,8 @@ pipeline:
         webhook:  https://hooks.slack.com/services/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
         channel: soa_team_h
         username: Drone
+        when:
+            status: [ success, failure ]
         template: >
             {{#success build.status}}
                 build {{build.number}} succeeded. Good job.
